@@ -28,9 +28,8 @@ my @queue = grep {scalar @{$_->{chips}} == 2} values %bots;
 while (1) {
     last unless @queue;
     my $bot = pop @queue;
-    print_bots $bot;
-    print "#################################\n" if 2 == has_61_and_17 $bot;
-    my @chips = sort @{$bot->{chips}};
+    print_bots $bot  if 2 == has_61_and_17 $bot;
+    my @chips = sort {$a <=> $b} @{$bot->{chips}};
     $bot->{chips} = [];
     my $low = get_bot $bot->{low};
     push @{$low->{chips}}, $chips[0];
@@ -39,10 +38,11 @@ while (1) {
     push @queue, $low if $low->{id} =~ /^bot/ && @{$low->{chips}} == 2;
     push @queue, $high if $high->{id} =~ /^bot/ && @{$high->{chips}} == 2;
 }
-print "\nAfter:\n";
-print_bots sort {$a->{id} cmp $b->{id} }values %bots;
-print "\nOutputs:\n";
-print_bots grep { $_->{id} =~ /^output/ } values %bots;
+
+my @numbers = map { get_bot("output $_")->{chips}->[0] } 0..2;
+my $product = $numbers[0] * $numbers[1] * $numbers[2];
+
+print "answer part 2: $product\n";
 
 sub print_bots {
     printf("id: %s, chips: [%s], low: %s, high: %s\n",
@@ -68,7 +68,7 @@ sub rule {
 sub value_to {
     my ($val, $to) = @_;
     my $bot = get_bot $to;
-    push @{$bot->{chips}}, int $val;
+    push @{$bot->{chips}}, $val;
 }
 
 sub get_bot {
