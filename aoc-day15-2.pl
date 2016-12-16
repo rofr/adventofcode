@@ -13,7 +13,6 @@ while (1) {
 
 print "Start time: $time\n";
 
-
 sub solved {
     my $delta = 1;
     scalar @_ == scalar grep { $_->[0] == ($_->[1] - $delta++) % $_->[1]} @_;    
