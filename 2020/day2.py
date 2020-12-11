@@ -11,6 +11,11 @@ def password_ok(l,h,c,p):
         return False
     return True
 
+def password_ok2(idx1, idx2, char, password):
+    first = password[idx1-1] == char
+    second = password[idx2-1] == char
+    return first ^ second
+
 
 file = open('day2.txt', 'r')
 lines = file.readlines()
@@ -25,7 +30,7 @@ for line in lines:
     char = parts[2]
     password = parts[3]
 
-    if password_ok(low, high, char, password):
+    if password_ok2(low, high, char, password):
         correct_passwords = correct_passwords + 1
     
 print(correct_passwords)
