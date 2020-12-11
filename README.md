@@ -1,4 +1,4 @@
 
-Just sharing my solutions to the advent of code 2016 puzzles
+My solutions to some advent of code puzzles
 
 http://adventofcode.com/
