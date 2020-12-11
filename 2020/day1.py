@@ -4,8 +4,6 @@ file = open('day1.txt', 'r')
 numbers = file.readlines()
 file.close()
 
-#numbers = [1,2,3,4,5,6,200, 1820, 7, 12, 600, 500]
-
 size = len(numbers)
 
 for i in range(size):

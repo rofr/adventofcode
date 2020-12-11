@@ -13,7 +13,7 @@ def count_trees(map, slope):
     column = 0
     while line < len(map):
         if map[line][column] == '#':
-            trees = trees + 1
+            trees += 1
         line = line + down
         column = (column + right) % columns
     return trees
@@ -25,6 +25,6 @@ for slope in slopes:
     print(slope, end = ", trees: ")
     trees = count_trees(lines, slope)
     print(trees)
-    product = product * trees
+    product *= trees
 
 print(product)

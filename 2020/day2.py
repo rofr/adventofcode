@@ -4,7 +4,7 @@ def password_ok(l,h,c,p):
     count = 0
     for char in p:
         if c == char:
-            count = count + 1
+            count += 1
     if count > h:
         return False
     if count < l:
@@ -31,7 +31,7 @@ for line in lines:
     password = parts[3]
 
     if password_ok2(low, high, char, password):
-        correct_passwords = correct_passwords + 1
+        correct_passwords += 1
     
 print(correct_passwords)
 
